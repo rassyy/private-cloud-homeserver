@@ -52,6 +52,8 @@ RUN chown -R www-data:www-data /var/www/html \
 COPY docker/nginx/default.conf /etc/nginx/http.d/default.conf
 # Copy custom PHP upload limits
 COPY docker/php/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
+# Override FPM listen to IPv4
+RUN sed -i 's/^listen = 9000/listen = 127.0.0.1:9000/' /usr/local/etc/php-fpm.d/docker.conf
 # Copy Supervisor config to run PHP-FPM and Nginx together
 COPY docker/supervisord.conf /etc/supervisord.conf
 
