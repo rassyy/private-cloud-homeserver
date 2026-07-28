@@ -1,6 +1,7 @@
 # Stage 1: Build Frontend Assets (Vue + Tailwind v4 + Vite)
 FROM node:20-alpine AS frontend-builder
-RUN apk add --no-cache php83 php83-phar php83-mbstring php83-xml php83-dom php83-tokenizer php83-simplexml
+RUN apk add --no-cache php83 php83-phar php83-mbstring php83-xml php83-dom php83-tokenizer php83-simplexml \
+    && ln -s /usr/bin/php83 /usr/bin/php
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /app
 COPY composer.json composer.lock ./
