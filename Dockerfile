@@ -4,7 +4,7 @@ RUN apk add --no-cache php83 php83-phar php83-mbstring php83-xml php83-dom php83
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /app
 COPY composer.json composer.lock ./
-RUN composer install --no-interaction --no-progress --no-dev --optimize-autoloader 2>/dev/null || true
+RUN composer install --no-interaction --no-progress --no-dev --optimize-autoloader
 COPY package*.json ./
 RUN npm ci
 COPY . .
