@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CloudVault - File Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed-variant": "#444749",
+                      "on-primary-container": "#dad7ff",
+                      "tertiary-fixed": "#e0e3e5",
+                      "surface-dim": "#cbdbf5",
+                      "surface-container-low": "#eff4ff",
+                      "on-tertiary-container": "#dadcde",
+                      "surface-container-highest": "#d3e4fe",
+                      "surface-container-high": "#dce9ff",
+                      "tertiary-container": "#5e6163",
+                      "surface-container-lowest": "#ffffff",
+                      "primary": "#3b82f6",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "on-background": "#0b1c30",
+                      "inverse-surface": "#213145",
+                      "secondary": "#565e74",
+                      "on-secondary-container": "#5c647a",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "surface-variant": "#d3e4fe",
+                      "on-tertiary-fixed": "#191c1e",
+                      "error": "#ba1a1a",
+                      "primary-fixed": "#e2dfff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "outline": "#777587",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "tertiary": "#46494b",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed-dim": "#c4c7c9",
+                      "surface-container": "#e5eeff",
+                      "surface-tint": "#4d44e3",
+                      "surface": "#f8f9ff",
+                      "outline-variant": "#c7c4d8",
+                      "on-secondary-fixed": "#131b2e",
+                      "primary-container": "#4f46e5",
+                      "on-surface": "#0b1c30",
+                      "background": "#f8f9ff",
+                      "secondary-container": "#dae2fd",
+                      "on-surface-variant": "#464555",
+                      "error-container": "#ffdad6",
+                      "surface-bright": "#f8f9ff",
+                      "inverse-primary": "#c3c0ff",
+                      "secondary-fixed": "#dae2fd",
+                      "on-primary-fixed": "#0f0069"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "stack-md": "16px",
+                      "stack-sm": "8px",
+                      "stack-lg": "32px",
+                      "sidebar-width": "280px",
+                      "stack-xs": "4px",
+                      "container-max": "1440px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Geist"],
+                      "mono-sm": ["Geist"],
+                      "label-md": ["Geist"],
+                      "headline-lg": ["Geist"],
+                      "headline-lg-mobile": ["Geist"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "-0.011em", "fontWeight": "400"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "mono-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0", "fontWeight": "400"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "headline-lg": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "-0.006em", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+      </style>
+</head>
+<body class="bg-slate-50/50 text-slate-900 font-body-md overflow-hidden flex font-body-md text-body-md h-screen antialiased">
+<!-- SideNavBar (Shared Component) -->
+<nav class="fixed left-0 top-0 h-screen w-[280px] flex flex-col py-6 px-4 z-40 bg-white border-r border-slate-200/50 flex-shrink-0 shadow-[1px_0_10px_rgba(0,0,0,0.02)]">
+<div class="flex items-center gap-3 mb-8 px-2">
+<img alt="Logo" class="w-8 h-8 rounded-xl bg-slate-50 p-1.5 shadow-sm border border-slate-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA6gH4g_Lx0816D9LpZbxyXW7ycnR_-JBcLsb1mX3zvyXGoecUaw2rfrhiXAn1rs_T1FgXLXxmw5bq6ZC3T4bD4VoWNrC8rMFJwkAd602yALOFVIIDkswAjVeEwRWJrMtJRBvqVlcqQZJ4ZMtAuyn3ovklok3fCEYLNrUcmJ3k2GhtZLThnfjfnrMmIdx6iXWsxUEVh8iY9G5fEj7IuFEoAmq-3r0cb8WKDa4zrUHzU-dGt20q-6SfkOEnKu2voxSUo7j6GcotTpRt"/>
+<div>
+<h1 class="font-headline-md text-lg tracking-tight font-semibold text-slate-900">CloudVault</h1>
+<p class="text-xs font-medium text-slate-500">Secure Storage</p>
+</div>
+</div>
+<button class="w-full flex items-center justify-center gap-2 bg-slate-900 text-white rounded-xl py-2.5 px-4 mb-6 hover:bg-slate-800 transition-all duration-300 ease-in-out text-sm font-medium shadow-sm hover:shadow-md hover:-translate-y-0.5">
+<span class="material-symbols-outlined text-[20px]">add</span>
+            New File
+        </button>
+<div class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl bg-slate-100 text-slate-900 font-medium transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">folder_shared</span>
+                    My Files
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">group</span>
+                    Shared with me
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">history</span>
+                    Recent
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">star</span>
+                    Starred
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+                    Trash
+                </a>
+</div>
+<div class="mt-auto flex flex-col gap-1 pt-4 border-t border-slate-200/50">
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">cloud</span>
+                Storage
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">rocket_launch</span>
+                Upgrade
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-sidebar-width flex-1 flex flex-col h-full bg-slate-50/50 relative">
+<!-- TopAppBar (Shared Component) -->
+<header class="flex justify-between items-center w-full px-8 h-16 sticky top-0 z-30 bg-slate-50/80 backdrop-blur-md border-b border-slate-200/50">
+<div class="flex items-center flex-1">
+<!-- Search Bar Placeholder -->
+<div class="flex-1 max-w-xl relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors duration-300 pointer-events-none text-[20px]">search</span>
+<input class="w-full bg-white border border-slate-200/80 rounded-xl py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all duration-300 ease-in-out shadow-sm placeholder:text-slate-400 font-body-md" placeholder="Search CloudVault..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2 ml-4">
+<button class="p-2 rounded-xl text-slate-500 hover:bg-white hover:text-slate-900 hover:shadow-sm border border-transparent hover:border-slate-200/50 transition-all duration-300 ease-in-out flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="p-2 rounded-xl text-slate-500 hover:bg-white hover:text-slate-900 hover:shadow-sm border border-transparent hover:border-slate-200/50 transition-all duration-300 ease-in-out flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+<button class="p-2 rounded-xl text-slate-500 hover:bg-white hover:text-slate-900 hover:shadow-sm border border-transparent hover:border-slate-200/50 transition-all duration-300 ease-in-out flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</button>
+<div class="h-5 w-px bg-slate-200 mx-2"></div>
+<button class="w-8 h-8 rounded-full overflow-hidden border border-slate-200 shadow-sm hover:shadow transition-all duration-300 ease-in-out hover:ring-2 hover:ring-primary/20 ring-offset-2 ring-offset-slate-50">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A professional headshot of a person looking directly at the camera. The lighting is soft and flattering, typical of a corporate modern aesthetic. The background is a plain, neutral color like light gray or white, ensuring the focus remains entirely on the individual's face. They are wearing business casual attire." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAC9j72XFFNrm6aguOp36bMMRthUiwgGEJ-Rf7Ie6kUJ9ONuGBnQgCu4MVJCMyHhT7R7a7b9TXIspzpXsC4ARTLUaZg9zbfzBwG1PQqi0eY6KplBJp0_omwNQDDjCl2Xg4Q0KX_MjrYUq4Lppa60B3XDj0BmEGVNb-T81xXaS9ii1gNhqeRxbSBSTuLoCRKRcWvtmrNv4JFh--LnCmXYYmMjGzbS4sSH-6Hw5Fn8GIsEQkQFUJvXGrANCJY66X0j1eZRCMKWTNW3Q4u"/>
+</button>
+</div>
+</header>
+<!-- Stage Area (File Browser + Details Panel) -->
+<div class="flex-1 flex overflow-hidden p-8 gap-8">
+<!-- File Explorer -->
+<div class="flex-1 flex flex-col bg-white rounded-2xl border border-slate-200/50 overflow-hidden shadow-sm">
+<div class="px-6 py-4 border-b border-slate-200/50 flex justify-between items-center bg-white">
+<h2 class="font-headline-lg text-2xl tracking-tight text-slate-900 font-semibold">My Files</h2>
+<div class="flex bg-slate-200/50 rounded-xl p-1 border border-slate-200/50">
+<button class="text-slate-500 hover:text-slate-700 p-1.5 transition-all duration-300 ease-in-out flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">grid_view</span></button>
+<button class="bg-white shadow-sm text-slate-900 rounded-lg p-1.5 transition-all duration-300 ease-in-out flex items-center justify-center"><span class="material-symbols-outlined text-[18px]">list</span></button>
+</div>
+</div>
+<!-- Table Header -->
+<div class="grid grid-cols-12 gap-4 px-6 py-3 border-b border-slate-200/50 bg-slate-50/50 font-medium text-xs text-slate-500 uppercase tracking-wider">
+<div class="col-span-6">Name</div>
+<div class="col-span-2 text-right">Size</div>
+<div class="col-span-3">Modified</div>
+<div class="col-span-1 text-center"></div>
+</div>
+<!-- File List (Scrollable) -->
+<div class="flex-1 overflow-y-auto divide-y divide-slate-100">
+<!-- Row 1 -->
+<div class="grid grid-cols-12 gap-4 px-6 py-3 items-center hover:bg-slate-50/80 transition-colors duration-300 ease-in-out group h-[56px] cursor-pointer">
+<div class="col-span-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-500 text-[20px]" style="font-variation-settings: 'FILL' 1;">folder</span>
+<span class="font-medium text-sm text-slate-900 truncate">Q4 Financial Reports</span>
+</div>
+<div class="col-span-2 text-right font-mono text-xs text-slate-500">--</div>
+<div class="col-span-3 text-xs text-slate-500">Oct 24, 2023</div>
+<div class="col-span-1 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-lg hover:bg-slate-200/50 text-slate-400 hover:text-slate-700 transition-all duration-300 ease-in-out"><span class="material-symbols-outlined text-[18px]">more_horiz</span></button>
+</div>
+</div>
+<!-- Row 2 (Selected) -->
+<div class="grid grid-cols-12 gap-4 px-6 py-3 items-center bg-slate-100 transition-colors duration-300 ease-in-out group h-[56px] cursor-pointer">
+<div class="col-span-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-500 text-[20px]" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-semibold text-sm text-slate-900 truncate">Q4_Marketing_Strategy_Final.pdf</span>
+</div>
+<div class="col-span-2 text-right font-mono text-xs text-slate-500">4.2 MB</div>
+<div class="col-span-3 text-xs text-slate-500">Today, 10:42 AM</div>
+<div class="col-span-1 flex justify-end opacity-100 transition-opacity gap-1">
+<button class="p-1.5 rounded-lg hover:bg-slate-200/50 text-slate-400 hover:text-slate-700 transition-all duration-300 ease-in-out" title="Share"><span class="material-symbols-outlined text-[18px]">share</span></button>
+<button class="p-1.5 rounded-lg hover:bg-slate-200/50 text-slate-400 hover:text-slate-700 transition-all duration-300 ease-in-out"><span class="material-symbols-outlined text-[18px]">more_horiz</span></button>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-12 gap-4 px-6 py-3 items-center hover:bg-slate-50/80 transition-colors duration-300 ease-in-out group h-[56px] cursor-pointer">
+<div class="col-span-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-green-500 text-[20px]" style="font-variation-settings: 'FILL' 1;">table_chart</span>
+<span class="font-medium text-sm text-slate-900 truncate">Client_Database_Backup.csv</span>
+</div>
+<div class="col-span-2 text-right font-mono text-xs text-slate-500">128 MB</div>
+<div class="col-span-3 text-xs text-slate-500">Yesterday</div>
+<div class="col-span-1 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-lg hover:bg-slate-200/50 text-slate-400 hover:text-slate-700 transition-all duration-300 ease-in-out"><span class="material-symbols-outlined text-[18px]">more_horiz</span></button>
+</div>
+</div>
+<!-- Row 4 -->
+<div class="grid grid-cols-12 gap-4 px-6 py-3 items-center hover:bg-slate-50/80 transition-colors duration-300 ease-in-out group h-[56px] cursor-pointer">
+<div class="col-span-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-orange-500 text-[20px]" style="font-variation-settings: 'FILL' 1;">image</span>
+<span class="font-medium text-sm text-slate-900 truncate">Hero_Banner_v2.png</span>
+</div>
+<div class="col-span-2 text-right font-mono text-xs text-slate-500">2.1 MB</div>
+<div class="col-span-3 text-xs text-slate-500">Oct 20, 2023</div>
+<div class="col-span-1 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-lg hover:bg-slate-200/50 text-slate-400 hover:text-slate-700 transition-all duration-300 ease-in-out"><span class="material-symbols-outlined text-[18px]">more_horiz</span></button>
+</div>
+</div>
+<!-- Row 5 -->
+<div class="grid grid-cols-12 gap-4 px-6 py-3 items-center hover:bg-slate-50/80 transition-colors duration-300 ease-in-out group h-[56px] cursor-pointer">
+<div class="col-span-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-500 text-[20px]" style="font-variation-settings: 'FILL' 1;">folder</span>
+<span class="font-medium text-sm text-slate-900 truncate">Design Assets</span>
+</div>
+<div class="col-span-2 text-right font-mono text-xs text-slate-500">--</div>
+<div class="col-span-3 text-xs text-slate-500">Sep 15, 2023</div>
+<div class="col-span-1 flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-lg hover:bg-slate-200/50 text-slate-400 hover:text-slate-700 transition-all duration-300 ease-in-out"><span class="material-symbols-outlined text-[18px]">more_horiz</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- File Details Panel -->
+<aside class="w-[320px] bg-white border border-slate-200/50 rounded-2xl shadow-sm flex flex-col h-full overflow-y-auto shrink-0">
+<!-- Header / Preview -->
+<div class="p-6 border-b border-slate-200/50 flex flex-col items-center text-center">
+<div class="w-24 h-24 bg-blue-50 rounded-2xl flex items-center justify-center mb-4 border border-blue-100">
+<span class="material-symbols-outlined text-5xl text-blue-500" style="font-variation-settings: 'FILL' 1;">description</span>
+</div>
+<h3 class="font-headline-md text-base tracking-tight font-semibold text-slate-900 mb-1 break-all">Q4_Marketing_Strategy_Final.pdf</h3>
+<p class="text-xs font-medium text-slate-500 uppercase tracking-wider">PDF Document</p>
+</div>
+<!-- Metadata Sections -->
+<div class="p-6 space-y-6 flex-1 text-sm">
+<!-- Information Block -->
+<div>
+<h4 class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-4 border-b border-slate-200/50 pb-2">Information</h4>
+<dl class="space-y-4">
+<div class="flex flex-col">
+<dt class="text-xs text-slate-500 mb-1">Type</dt>
+<dd class="text-slate-900 font-medium">PDF Document (.pdf)</dd>
+</div>
+<div class="flex flex-col">
+<dt class="text-xs text-slate-500 mb-1">Size</dt>
+<dd class="text-slate-900 font-medium">4.2 MB (4,404,019 bytes)</dd>
+</div>
+<div class="flex flex-col">
+<dt class="text-xs text-slate-500 mb-1">Location</dt>
+<dd class="text-slate-900 font-medium flex items-center gap-1 cursor-pointer hover:text-blue-600 transition-colors">
+<span class="material-symbols-outlined text-[16px] text-slate-400">folder</span> My Files / Marketing
+                                </dd>
+</div>
+<div class="flex flex-col">
+<dt class="text-xs text-slate-500 mb-1">Owner</dt>
+<dd class="text-slate-900 font-medium flex items-center gap-2">
+<img alt="Owner avatar" class="w-5 h-5 rounded-full object-cover ring-1 ring-slate-200" data-alt="A small circular avatar showing a professional looking person in a modern office environment. Light mode aesthetic, sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMteLskiUS5wX1TkYia-vvDQ8QyyD6xj5WxT1MkiXyAGw9C1QV4Kswqhz8nvgUHiUa7jbW18UKbhq8T-ULIwbmS51RUj7NGSid8i2QhLuxy_0uVEaR8UaDz9FNBXrslg0Q9zFRCR6bfMBgkDs9V9583nWroBIBQU3P3sK-f2KTrgs4eiqM7aEH2Wh4Rl26THyAiwktEct9iehDQDnjg9uaw36yf3n9Twonh1qDD06I955Y12pZ1aA3fWOJGFeRVWGFBAijCKIc7rvM"/>
+                                    Jane Doe
+                                </dd>
+</div>
+</dl>
+</div>
+<!-- History Block -->
+<div>
+<h4 class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-4 border-b border-slate-200/50 pb-2">History</h4>
+<dl class="space-y-4">
+<div class="flex flex-col">
+<dt class="text-xs text-slate-500 mb-1">Created</dt>
+<dd class="text-slate-900 font-medium">Oct 12, 2023 at 9:15 AM</dd>
+</div>
+<div class="flex flex-col">
+<dt class="text-xs text-slate-500 mb-1">Modified</dt>
+<dd class="text-slate-900 font-medium">Today at 10:42 AM</dd>
+</div>
+<div class="flex flex-col">
+<dt class="text-xs text-slate-500 mb-1">Opened</dt>
+<dd class="text-slate-900 font-medium">Today at 10:45 AM</dd>
+</div>
+</dl>
+</div>
+<!-- Sharing Block -->
+<div>
+<h4 class="text-xs font-medium text-slate-500 uppercase tracking-wider mb-4 border-b border-slate-200/50 pb-2">Sharing</h4>
+<div class="flex items-center gap-3">
+<div class="flex -space-x-2">
+<img alt="User 1" class="w-8 h-8 rounded-full border-2 border-white object-cover shadow-sm" data-alt="Small circular avatar of a person, modern style, clean white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKGT8fc9x2Sy-5UyFCYeT-V8Bt_9p9RC7fg-Pgslo0xwz1A1EvAq0mQuQ2cYm6ukhJOZ2G9935VifzjGQUDmq6QIW7PJ3Rz78c6F29OA1GRdXFajkdv2x7Tu6i1fO0zOAIu7UHzD1w7q_ldPUoIHweBBjqlGpb4TS15xGsbvNb_sfHioNgfGFMBllribSZjFKwNDgQwwJDCEWWei1pvTOs3ayiHnBWv07TuYe5zOG28eCr7DCKLMHL0jwD1kwGE_msGACb7mg_bPDY"/>
+<img alt="User 2" class="w-8 h-8 rounded-full border-2 border-white object-cover shadow-sm" data-alt="Small circular avatar of another person, professional setting, bright lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxKjk2Il5sN_IZmTEybdQFxHJk1YRzenynRjT5Trvv21Q4WMSNq87qjoZqrFhNOn9yWVfJ9kggJv4B43XDQ9imYY_ZybX-r6swgJ4ZP3d-0kdNdyLPTwx34gIMkiVgyEj0F09YoLefSJQ7FhsW2HRGRjWh_7fz3bw0Ue8h3F3l9nZp1Erc8XY0ytWiSn3AddyJk9gW1QHEZz_gUCdfPmI9FQMn5abxVhTADiZFyuG0clRsu88IKjHUBMSk2BTmULiLXC_AbpSEg1r8"/>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-xs font-medium text-slate-600 shadow-sm">
+                                    +3
+                                </div>
+</div>
+<button class="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors">Manage access</button>
+</div>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="p-4 border-t border-slate-200/50 bg-white flex gap-2 rounded-b-2xl">
+<button class="flex-1 bg-slate-900 text-white py-2.5 px-4 rounded-xl text-sm font-medium hover:bg-slate-800 transition-all duration-300 ease-in-out shadow-sm hover:shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span> Download
+                    </button>
+<button class="p-2.5 border border-slate-200/80 text-slate-700 rounded-xl hover:bg-slate-50 transition-all duration-300 ease-in-out flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[18px]">share</span>
+</button>
+</div>
+</aside>
+</div>
+</main>
+</body></html>

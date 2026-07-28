@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CloudVault - Core Modals</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#191c1e",
+                    "on-primary-container": "#dad7ff",
+                    "secondary-container": "#dae2fd",
+                    "on-tertiary-container": "#dadcde",
+                    "surface-tint": "#4d44e3",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#dce9ff",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "on-tertiary-fixed-variant": "#444749",
+                    "background": "#f8f9ff",
+                    "on-surface-variant": "#464555",
+                    "surface": "#f8f9ff",
+                    "surface-container": "#e5eeff",
+                    "on-secondary-container": "#5c647a",
+                    "primary": "#3525cd",
+                    "on-error": "#ffffff",
+                    "on-background": "#0b1c30",
+                    "surface-dim": "#cbdbf5",
+                    "inverse-surface": "#213145",
+                    "tertiary": "#46494b",
+                    "surface-container-low": "#eff4ff",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "tertiary-fixed": "#e0e3e5",
+                    "secondary-fixed": "#dae2fd",
+                    "on-surface": "#0b1c30",
+                    "secondary": "#565e74",
+                    "surface-bright": "#f8f9ff",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "tertiary-container": "#5e6163",
+                    "surface-container-highest": "#d3e4fe",
+                    "primary-fixed": "#e2dfff",
+                    "surface-variant": "#d3e4fe",
+                    "tertiary-fixed-dim": "#c4c7c9",
+                    "on-secondary-fixed": "#131b2e",
+                    "inverse-primary": "#c3c0ff",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#0f0069",
+                    "primary-container": "#4f46e5",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#777587",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#c7c4d8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-lg": "32px",
+                    "stack-xs": "4px",
+                    "sidebar-width": "280px",
+                    "container-max": "1440px",
+                    "stack-md": "16px",
+                    "gutter": "24px",
+                    "stack-sm": "8px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Geist"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Geist"],
+                    "label-md": ["Geist"],
+                    "headline-md": ["Geist"],
+                    "mono-sm": ["Geist"]
+            },
+            "fontSize": {
+                    "headline-lg": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "-0.011em", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "-0.006em", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "mono-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .glass-overlay {
+            background-color: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        
+        .modal-enter {
+            opacity: 0;
+            transform: scale(0.95) translateY(10px);
+            transition: opacity 0.3s ease-out, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .modal-enter-active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        .folder-tree-item:hover {
+            background-color: theme('colors.surface-container-high');
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md h-screen overflow-hidden flex flex-col items-center justify-center relative p-8 gap-8">
+<!-- Background Context (simulated UI) -->
+<div class="absolute inset-0 z-0 flex flex-col p-8 opacity-20 pointer-events-none">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-8">CloudVault Workspace</h1>
+<div class="grid grid-cols-4 gap-6">
+<div class="h-32 border border-outline-variant rounded-xl bg-surface"></div>
+<div class="h-32 border border-outline-variant rounded-xl bg-surface"></div>
+<div class="h-32 border border-outline-variant rounded-xl bg-surface"></div>
+<div class="h-32 border border-outline-variant rounded-xl bg-surface"></div>
+</div>
+</div>
+<!-- Buttons to trigger modals (for demonstration) -->
+<div class="relative z-10 flex gap-4 bg-surface p-4 rounded-xl border border-outline-variant shadow-lg mb-8">
+<button class="px-4 py-2 bg-inverse-surface text-on-primary rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity" onclick="showModal('createFolderModal')">Show Create Folder</button>
+<button class="px-4 py-2 bg-inverse-surface text-on-primary rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity" onclick="showModal('renameModal')">Show Rename</button>
+<button class="px-4 py-2 bg-inverse-surface text-on-primary rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity" onclick="showModal('moveModal')">Show Move</button>
+</div>
+<!-- 1. Create Folder Modal -->
+<div class="fixed inset-0 z-50 flex items-center justify-center glass-overlay hidden opacity-0 transition-opacity duration-300" id="createFolderModal">
+<div class="bg-surface-container-lowest w-full max-w-[400px] rounded-2xl shadow-2xl border border-outline-variant/30 overflow-hidden modal-enter transform scale-95 translate-y-4">
+<div class="px-6 py-5 border-b border-outline-variant/50 flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-on-surface">New Folder</h2>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors" onclick="hideModal('createFolderModal')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-6">
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant" for="folderName">Folder Name</label>
+<input class="w-full px-4 py-3 bg-surface rounded-xl border border-outline-variant focus:border-inverse-surface focus:ring-1 focus:ring-inverse-surface outline-none transition-all font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50" id="folderName" type="text" value="Untitled Folder"/>
+</div>
+</div>
+<div class="px-6 py-4 bg-surface-container-low border-t border-outline-variant/50 flex justify-end gap-3 rounded-b-2xl">
+<button class="px-4 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors" onclick="hideModal('createFolderModal')">Cancel</button>
+<button class="px-6 py-2 bg-inverse-surface text-on-primary rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity shadow-sm">Create</button>
+</div>
+</div>
+</div>
+<!-- 2. Rename Modal -->
+<div class="fixed inset-0 z-50 flex items-center justify-center glass-overlay hidden opacity-0 transition-opacity duration-300" id="renameModal">
+<div class="bg-surface-container-lowest w-full max-w-[400px] rounded-2xl shadow-2xl border border-outline-variant/30 overflow-hidden modal-enter transform scale-95 translate-y-4">
+<div class="px-6 py-5 border-b border-outline-variant/50 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">edit</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Rename Item</h2>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors" onclick="hideModal('renameModal')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-6">
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant" for="renameInput">Name</label>
+<input class="w-full px-4 py-3 bg-surface rounded-xl border border-outline-variant focus:border-inverse-surface focus:ring-1 focus:ring-inverse-surface outline-none transition-all font-body-md text-body-md text-on-surface" id="renameInput" type="text" value="Q4_Financial_Report_v2.pdf"/>
+<p class="font-body-md text-body-md text-on-surface-variant/70 text-xs mt-1">Changing the extension may make the file unusable.</p>
+</div>
+</div>
+<div class="px-6 py-4 bg-surface-container-low border-t border-outline-variant/50 flex justify-end gap-3 rounded-b-2xl">
+<button class="px-4 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors" onclick="hideModal('renameModal')">Cancel</button>
+<button class="px-6 py-2 bg-inverse-surface text-on-primary rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity shadow-sm">Save changes</button>
+</div>
+</div>
+</div>
+<!-- 3. Move Item Modal (Folder Tree) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center glass-overlay hidden opacity-0 transition-opacity duration-300" id="moveModal">
+<div class="bg-surface-container-lowest w-full max-w-[480px] rounded-2xl shadow-2xl border border-outline-variant/30 overflow-hidden flex flex-col max-h-[819px] modal-enter transform scale-95 translate-y-4">
+<div class="px-6 py-5 border-b border-outline-variant/50 flex justify-between items-center bg-surface-container-lowest z-10 shrink-0">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">drive_file_move</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Move Item</h2>
+<p class="font-body-md text-body-md text-on-surface-variant text-xs">Moving "Project_Assets.zip"</p>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors" onclick="hideModal('moveModal')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Folder Tree -->
+<div class="p-2 overflow-y-auto flex-grow bg-surface">
+<!-- Search within tree -->
+<div class="px-4 py-3 mb-2 sticky top-0 bg-surface z-10 border-b border-outline-variant/30">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50 text-sm">search</span>
+<input class="w-full pl-9 pr-4 py-2 bg-surface-container-low rounded-lg border-none focus:ring-1 focus:ring-outline-variant outline-none font-body-md text-body-md text-on-surface text-sm" placeholder="Search folders..." type="text"/>
+</div>
+</div>
+<ul class="font-body-md text-body-md text-on-surface space-y-1 pb-4">
+<!-- Root -->
+<li class="folder-tree-item flex items-center gap-2 px-4 py-2.5 rounded-lg cursor-pointer text-primary bg-primary/5">
+<span class="material-symbols-outlined text-sm">cloud</span>
+<span class="font-label-md text-label-md font-medium flex-grow">My Files</span>
+</li>
+<!-- Level 1 -->
+<li>
+<div class="folder-tree-item flex items-center gap-2 px-4 py-2.5 rounded-lg cursor-pointer ml-4 text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-sm">arrow_right</span>
+<span class="material-symbols-outlined text-sm text-outline">folder</span>
+<span class="flex-grow">Personal</span>
+</div>
+</li>
+<!-- Level 1 (Expanded) -->
+<li>
+<div class="folder-tree-item flex items-center gap-2 px-4 py-2.5 rounded-lg cursor-pointer ml-4 text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-sm">arrow_drop_down</span>
+<span class="material-symbols-outlined text-sm text-primary">folder_open</span>
+<span class="flex-grow font-medium text-on-surface">Work Projects</span>
+</div>
+<!-- Level 2 -->
+<ul class="ml-12 mt-1 space-y-1 border-l border-outline-variant/30 pl-2">
+<li>
+<div class="folder-tree-item flex items-center gap-2 px-4 py-2 rounded-lg cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-sm text-outline">folder</span>
+<span>Q1 Deliverables</span>
+</div>
+</li>
+<!-- Selected Target -->
+<li>
+<div class="flex items-center gap-2 px-4 py-2 rounded-lg cursor-pointer bg-secondary-container text-on-secondary-container border border-secondary-container/50">
+<span class="material-symbols-outlined text-sm text-primary">folder</span>
+<span class="font-medium">Design Assets</span>
+<span class="material-symbols-outlined ml-auto text-sm text-primary">check</span>
+</div>
+</li>
+<li>
+<div class="folder-tree-item flex items-center gap-2 px-4 py-2 rounded-lg cursor-pointer text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-sm text-outline">folder</span>
+<span>Client Presentations</span>
+</div>
+</li>
+</ul>
+</li>
+<!-- Level 1 -->
+<li>
+<div class="folder-tree-item flex items-center gap-2 px-4 py-2.5 rounded-lg cursor-pointer ml-4 text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-sm">arrow_right</span>
+<span class="material-symbols-outlined text-sm text-outline">folder_shared</span>
+<span class="flex-grow">Shared with Marketing</span>
+</div>
+</li>
+</ul>
+</div>
+<div class="px-6 py-4 bg-surface-container-low border-t border-outline-variant/50 flex items-center justify-between rounded-b-2xl shrink-0 z-10">
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined text-sm">create_new_folder</span>
+                    New folder here
+                </button>
+<div class="flex gap-3">
+<button class="px-4 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors" onclick="hideModal('moveModal')">Cancel</button>
+<button class="px-6 py-2 bg-inverse-surface text-on-primary rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity shadow-sm">Move here</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+        function showModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('hidden');
+            // Trigger reflow
+            void modal.offsetWidth;
+            
+            modal.classList.remove('opacity-0');
+            const innerDiv = modal.querySelector('.modal-enter');
+            innerDiv.classList.add('modal-enter-active');
+        }
+
+        function hideModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.add('opacity-0');
+            
+            const innerDiv = modal.querySelector('.modal-enter');
+            innerDiv.classList.remove('modal-enter-active');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300); // match transition duration
+        }
+
+        // Initialize first modal for default view
+        setTimeout(() => {
+            showModal('createFolderModal');
+        }, 500);
+    </script>
+</body></html>

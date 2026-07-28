@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CloudVault - File Preview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#191c1e",
+                        "on-primary-container": "#dad7ff",
+                        "secondary-container": "#dae2fd",
+                        "on-tertiary-container": "#dadcde",
+                        "surface-tint": "#4d44e3",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#dce9ff",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "background": "#f8f9ff",
+                        "on-surface-variant": "#464555",
+                        "surface": "#f8f9ff",
+                        "surface-container": "#e5eeff",
+                        "on-secondary-container": "#5c647a",
+                        "primary": "#3525cd",
+                        "on-error": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "surface-dim": "#cbdbf5",
+                        "inverse-surface": "#213145",
+                        "tertiary": "#46494b",
+                        "surface-container-low": "#eff4ff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "tertiary-fixed": "#e0e3e5",
+                        "secondary-fixed": "#dae2fd",
+                        "on-surface": "#0b1c30",
+                        "secondary": "#565e74",
+                        "surface-bright": "#f8f9ff",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "tertiary-container": "#5e6163",
+                        "surface-container-highest": "#d3e4fe",
+                        "primary-fixed": "#e2dfff",
+                        "surface-variant": "#d3e4fe",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "on-secondary-fixed": "#131b2e",
+                        "inverse-primary": "#c3c0ff",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#0f0069",
+                        "primary-container": "#4f46e5",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#777587",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c7c4d8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "32px",
+                        "stack-xs": "4px",
+                        "sidebar-width": "280px",
+                        "container-max": "1440px",
+                        "stack-md": "16px",
+                        "gutter": "24px",
+                        "stack-sm": "8px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Geist"],
+                        "label-md": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "mono-sm": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.011em", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.006em", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "mono-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface h-full overflow-hidden text-on-surface">
+<!-- The actual background content behind the modal (simulated for context) -->
+<div class="w-full h-full p-gutter flex flex-col hidden md:flex" data-alt="A softly focused, light and modern workspace environment showing subtle hints of abstract data visualizations and crisp white interfaces slightly blurred out to simulate depth of field. The palette is dominated by airy light slate and gentle blue tones, establishing a minimalist corporate modern aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD49CCj4ASOO9tdSpG2TElRJlKpcFCOP2TtvL5FQP5Gh98SQdhcckz__sxF5ieWtuX6AVPJ7lzLmwJXc_iTJx-UHB3p3r1DJNWiGVRjXRBW8AkLBTifJ2n6NVCfhk-ArSNKMf4BdXa6-SDBLoLUW4LgnuxP7wCxZUz7Nb_leQmlFpSvTNxgWl1hnDAveJiU3W5Lsits6CVg3eVjlHSUVveUUR_A18L2by3FOVQwlMGojS5tFNfy20r3EVyWMB184ZeXGOEJEs7ReCpX')">
+<!-- Behind the blur -->
+</div>
+<!-- Full-screen glassmorphic overlay -->
+<div class="fixed inset-0 z-50 flex flex-col bg-inverse-surface/80 backdrop-blur-2xl transition-opacity duration-300">
+<!-- Top Toolbar -->
+<div class="w-full h-16 flex items-center justify-between px-gutter border-b border-white/10">
+<!-- Left: File Info -->
+<div class="flex items-center gap-4 text-white">
+<span class="material-symbols-outlined">image</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-white m-0">Project_Architecture_V2.png</h2>
+<p class="font-body-md text-body-md text-white/70">4.2 MB • Modified Oct 24, 2023</p>
+</div>
+</div>
+<!-- Right: Actions -->
+<div class="flex items-center gap-2">
+<button aria-label="Print" class="p-2 rounded-full hover:bg-white/10 text-white transition-colors duration-150 flex items-center justify-center group relative">
+<span class="material-symbols-outlined">print</span>
+<span class="absolute -bottom-8 bg-inverse-surface text-inverse-on-surface font-label-md text-label-md px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">Print</span>
+</button>
+<button aria-label="Download" class="p-2 rounded-full hover:bg-white/10 text-white transition-colors duration-150 flex items-center justify-center group relative">
+<span class="material-symbols-outlined">download</span>
+<span class="absolute -bottom-8 bg-inverse-surface text-inverse-on-surface font-label-md text-label-md px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">Download</span>
+</button>
+<div class="w-px h-6 bg-white/20 mx-2"></div>
+<button aria-label="Close" class="p-2 rounded-full hover:bg-white/10 text-white transition-colors duration-150 flex items-center justify-center group relative">
+<span class="material-symbols-outlined">close</span>
+<span class="absolute -bottom-8 bg-inverse-surface text-inverse-on-surface font-label-md text-label-md px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">Close</span>
+</button>
+</div>
+</div>
+<!-- Main Preview Area -->
+<div class="flex-1 w-full h-full flex items-center justify-center p-gutter relative overflow-hidden">
+<!-- Navigation controls (Left/Right) -->
+<button class="absolute left-gutter p-4 rounded-full bg-white/5 hover:bg-white/10 text-white transition-all duration-200 hidden md:flex items-center justify-center backdrop-blur-md border border-white/10 shadow-[0_4px_12px_rgba(15,23,42,0.1)]">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<!-- The Image Container -->
+<div class="relative max-w-5xl w-full max-h-full flex items-center justify-center">
+<img class="max-w-full max-h-[870px] object-contain rounded-lg shadow-[0_12px_32px_rgba(15,23,42,0.15)] ring-1 ring-white/20" data-alt="A highly detailed, crisp architectural diagram showing cloud infrastructure components connected by glowing data streams. The visual is rendered in a minimalist, light-mode color palette using sharp lines, geometric shapes, and a stark white background with action blue accents. It feels highly professional, structured, and modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkqjoMoMPaG-hTBngy1c9DCBAtbKq_xuTC93wo0b1dtSemWh2KE0CfYO4KUnh1mrnVr8TexPrxg8FEleqt3bxUTbNPfsP-6gkf8ylfzEd_mvlUmOg2Cfeqz5YJlTQAg7Ns6QUM9ZtCLNqph3hVog7X0NYKUAuhXSWhdqJ9c86UdF5mlEQNI_1sU7cwNjyMXB3keN7zWQ3Rw_rvzliTfY_WSnbuNf5a0zDbcs3oUPsgsMeLCMmDS9ndsmoPlfmPf5UAsTtZdzC1idTn"/>
+<!-- Overlay Controls (Zoom) -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-surface-container-highest/90 backdrop-blur-md p-1.5 rounded-full shadow-[0_12px_32px_rgba(15,23,42,0.15)] border border-outline-variant/30">
+<button class="p-2 rounded-full hover:bg-white/50 text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">remove</span>
+</button>
+<span class="font-mono-sm text-mono-sm text-on-surface px-3 font-medium">100%</span>
+<button class="p-2 rounded-full hover:bg-white/50 text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+<div class="w-px h-4 bg-outline-variant mx-1"></div>
+<button class="p-2 rounded-full hover:bg-white/50 text-on-surface transition-colors" title="Fit to screen">
+<span class="material-symbols-outlined text-[20px]">fit_screen</span>
+</button>
+</div>
+</div>
+<!-- Navigation controls (Right) -->
+<button class="absolute right-gutter p-4 rounded-full bg-white/5 hover:bg-white/10 text-white transition-all duration-200 hidden md:flex items-center justify-center backdrop-blur-md border border-white/10 shadow-[0_4px_12px_rgba(15,23,42,0.1)]">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</body></html>

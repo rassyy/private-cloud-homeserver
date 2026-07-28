@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CloudVault - File List</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "primary": "#3b82f6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "2xl": "1rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "stack-md": "16px",
+                      "stack-sm": "8px",
+                      "stack-lg": "32px",
+                      "sidebar-width": "280px",
+                      "stack-xs": "4px",
+                      "container-max": "1440px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Geist"
+                      ],
+                      "mono-sm": [
+                              "Geist"
+                      ],
+                      "label-md": [
+                              "Geist"
+                      ],
+                      "headline-lg": [
+                              "Geist"
+                      ],
+                      "headline-lg-mobile": [
+                              "Geist"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "letterSpacing": "-0.011em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "mono-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg": [
+                              "30px",
+                              {
+                                      "lineHeight": "36px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "-0.006em",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-slate-50/50 text-slate-900 font-body-md min-h-screen flex flex-col md:flex-row antialiased selection:bg-primary/20">
+<!-- Top App Bar (Mobile Only) -->
+<header class="md:hidden bg-white/80 backdrop-blur-md border-b border-slate-200/50 flex justify-between items-center w-full px-gutter h-16 sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-900">menu</span>
+<span class="text-headline-md font-headline-md font-extrabold text-slate-900">CloudVault</span>
+</div>
+<div class="flex items-center gap-4 text-slate-900">
+<span class="material-symbols-outlined">search</span>
+<img class="w-8 h-8 rounded-full object-cover border border-slate-200/50" data-alt="A small, circular avatar image of a professional woman with brown hair, smiling, set against a neutral gray background. The image should be bright and clear, suitable for a UI profile picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo7-M54d4o6cDOs4w62j_h7e6EI149yHmYw73imTMFuebZ9mO3ZgCyTqOR6FWD_bDP8RuZNouZXxyOkHB1OQZO3CmbYSGTRDMlP83yp3eT4RpjORGLQyKE1UrKmQe9eB_LQPkdYl5PV7c3SfGBe7qj7frYbVA5rEeimMvjsd8VKuYY_FOcBXslyZdDMVsUzGdcO3sarVDMWYP-iUEMrdC_XgnfEjz6KJQV_iQBs576l_XvRbR_s5LsNiXjkMDH2oy5er4efu23kjI6"/>
+</div>
+</header>
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col bg-white border-r border-slate-200/50 shadow-[1px_0_10px_rgba(0,0,0,0.02)] fixed left-0 top-0 h-screen w-[280px] py-6 px-4 z-40">
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="w-8 h-8 rounded-xl bg-slate-50 border border-slate-100 shadow-sm flex items-center justify-center text-slate-900 font-bold">C</div>
+<div>
+<h1 class="font-headline-md text-lg tracking-tight font-semibold text-slate-900">CloudVault</h1>
+<p class="font-label-md text-xs font-medium text-slate-500">Secure Storage</p>
+</div>
+</div>
+<button class="mb-6 w-full py-2.5 px-4 bg-slate-900 text-white rounded-xl font-medium text-sm hover:bg-slate-800 transition-all duration-300 ease-in-out shadow-sm hover:shadow-md hover:-translate-y-0.5 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+            New File
+        </button>
+<div class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl bg-slate-100 text-slate-900 font-medium transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">folder_shared</span>
+                My Files
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">group</span>
+                Shared with me
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">history</span>
+                Recent
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">star</span>
+                Starred
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+                Trash
+            </a>
+</div>
+<div class="mt-auto pt-4 border-t border-slate-200/50 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">cloud</span>
+                Storage
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">rocket_launch</span>
+                Upgrade
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-[280px] p-margin-mobile md:p-gutter max-w-container-max mx-auto w-full flex flex-col h-full overflow-hidden">
+<!-- Header / Breadcrumb / Actions -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-stack-lg">
+<div class="flex items-center gap-2 font-medium text-sm text-slate-500">
+<span class="material-symbols-outlined text-[16px]">home</span>
+<span class="text-slate-300 mx-0.5">chevron_right</span>
+<span class="text-slate-900 font-semibold tracking-tight">My Files</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors duration-300 pointer-events-none text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2 rounded-xl border border-slate-200/80 focus:ring-2 focus:ring-primary/20 focus:border-primary/50 focus:outline-none bg-white text-slate-900 w-full sm:w-64 text-sm transition-all shadow-sm placeholder:text-slate-400" placeholder="Search files..." type="text"/>
+</div>
+<button class="flex items-center gap-2 px-3 py-2 bg-white border border-slate-200/80 rounded-xl hover:bg-slate-50 hover:shadow-sm transition-all duration-300 ease-in-out text-sm font-medium text-slate-700 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+</button>
+</div>
+</div>
+<!-- File List Table -->
+<div class="bg-white rounded-2xl border border-slate-200/50 shadow-sm flex flex-col flex-1 overflow-hidden relative">
+<!-- Table Header -->
+<div class="grid grid-cols-[minmax(200px,_1fr)_120px_150px_100px_48px] gap-4 px-6 py-4 border-b border-slate-200/50 bg-slate-50/50 text-slate-500 text-xs font-medium uppercase tracking-wider sticky top-0 z-10">
+<div>Name</div>
+<div>Owner</div>
+<div>Last Modified</div>
+<div class="text-right">File Size</div>
+<div></div>
+</div>
+<!-- Table Body (Scrollable) -->
+<div class="flex flex-col overflow-y-auto flex-1 text-sm">
+<!-- Row 1 -->
+<div class="grid grid-cols-[minmax(200px,_1fr)_120px_150px_100px_48px] gap-4 px-6 py-3 items-center border-b border-slate-100 hover:bg-slate-50/80 transition-colors duration-300 ease-in-out cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="text-red-500 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">picture_as_pdf</span>
+</div>
+<span class="font-medium text-slate-900 truncate">Q4_Financial_Report.pdf</span>
+</div>
+<div class="flex items-center gap-2">
+<img class="w-5 h-5 rounded-full object-cover ring-1 ring-slate-200" data-alt="Small avatar photo of a man in a business casual shirt." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhsOdwrr6T-qlPxeJ8sx81sO1tfmvpkMMjiZvlh_EBqLa51pYp4U2dDJqoa7BNAjM4oXQfgeQPtpajLf1CngekV55noXYfjtKkRbSMYLc_-17CywSSI3Igh9ZWTONlvSIKo0AFw6BpIYUy9rJozVJDskia5ii7swr60QI2xP-Yij4FDaStUSekgts0VCIfk989esgyR2qKPAu1Ho7-EUKWtgLkGo7gXVf5PSwPsqwttwbmrhmyx_rMxaC3ph2t0gN8Op_ZmVkgpRN_"/>
+<span class="text-xs text-slate-500 truncate">Me</span>
+</div>
+<div class="text-xs text-slate-500">Oct 24, 2023</div>
+<div class="text-xs font-mono text-slate-500 text-right">2.4 MB</div>
+<button class="opacity-0 group-hover:opacity-100 p-1.5 rounded-lg hover:bg-slate-200/50 text-slate-400 hover:text-slate-700 transition-all duration-300 ease-in-out">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-[minmax(200px,_1fr)_120px_150px_100px_48px] gap-4 px-6 py-3 items-center border-b border-slate-100 hover:bg-slate-50/80 transition-colors duration-300 ease-in-out cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="text-blue-500 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">folder</span>
+</div>
+<span class="font-medium text-slate-900 truncate">Project Phoenix Assets</span>
+</div>
+<div class="flex items-center gap-2">
+<img class="w-5 h-5 rounded-full object-cover ring-1 ring-slate-200" data-alt="Small avatar photo of a woman smiling with a solid blue background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHwUcltoYcpFUfFFNiKljW0hfzukj6ZsCwQlvshpC76VNduH2Xmi_ytN57vQiS701Ul05w6SAR-KAiGhaMUyYzEhijrHkQSRJ5y_vQxayOJ8Iz-3VCMpovyHXAuO0B6WlCSTwDLeWYLPVVND2b8psLGC7y7sqJKYXxOWo_0k9k1_SEk2ykJ-TU72bTn11zscZAih6tWJK9BlKbFHUx9KhjjNl4ADB2qD_jBkJ6mShoEhNzq6h-TqStgkAf_q9qyVCyKAKgr6aQaV_p"/>
+<span class="text-xs text-slate-500 truncate">Sarah J.</span>
+</div>
+<div class="text-xs text-slate-500">Oct 22, 2023</div>
+<div class="text-xs font-mono text-slate-500 text-right">--</div>
+<button class="opacity-0 group-hover:opacity-100 p-1.5 rounded-lg hover:bg-slate-200/50 text-slate-400 hover:text-slate-700 transition-all duration-300 ease-in-out">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+<!-- Row 3 (Active Context Menu target) -->
+<div class="grid grid-cols-[minmax(200px,_1fr)_120px_150px_100px_48px] gap-4 px-6 py-3 items-center border-b border-slate-100 bg-slate-50/80 relative cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="text-slate-400 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">image</span>
+</div>
+<span class="font-medium text-slate-900 truncate">Hero_Banner_v3.png</span>
+</div>
+<div class="flex items-center gap-2">
+<img class="w-5 h-5 rounded-full object-cover ring-1 ring-slate-200" data-alt="Small avatar photo of a man in a business casual shirt." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZPSi4zliptxAhai4j-MvJ3bV779JqULmZItDWVibhA4Aa_cjYxmAT-Fo67NGEuEI9MbUdrzV6fWRk_ufjsg04eF3V-bZfSHgoXtr-JJMM4gWguDObqpxtIkVNbmwQv-a7ah15Xx9EbPEn2m_I0OvR1PDAGd6s0dIIFlllYfkMnymRJRiBgqVLKkMFjDirrx-Bl15R0847bAyCKXWMvWIxJxcHbtbYqsDlxb32hpkuTeZiz4X4Yspr6bjTbvPlAs4IqeUyEQ4F-4M8"/>
+<span class="text-xs text-slate-500 truncate">Me</span>
+</div>
+<div class="text-xs text-slate-500">Oct 20, 2023</div>
+<div class="text-xs font-mono text-slate-500 text-right">8.1 MB</div>
+<button class="p-1.5 rounded-lg bg-slate-200/50 text-slate-700 transition-all">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+<!-- Context Menu Overlay -->
+<div class="absolute right-12 top-10 w-48 bg-white/90 backdrop-blur-xl border border-slate-200/50 shadow-lg rounded-xl py-2 z-20 flex flex-col text-sm">
+<button class="flex items-center gap-3 px-4 py-2 hover:bg-slate-50 text-slate-700 transition-colors w-full text-left">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                            Rename
+                        </button>
+<button class="flex items-center gap-3 px-4 py-2 hover:bg-slate-50 text-slate-700 transition-colors w-full text-left">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                            Download
+                        </button>
+<button class="flex items-center gap-3 px-4 py-2 hover:bg-slate-50 text-slate-700 transition-colors w-full text-left">
+<span class="material-symbols-outlined text-[18px]">drive_file_move</span>
+                            Move
+                        </button>
+<button class="flex items-center gap-3 px-4 py-2 hover:bg-slate-50 text-slate-700 transition-colors w-full text-left border-b border-slate-100 pb-3">
+<span class="material-symbols-outlined text-[18px]">star</span>
+                            Star
+                        </button>
+<button class="flex items-center gap-3 px-4 py-2 hover:bg-slate-50 text-slate-700 transition-colors w-full text-left pt-3">
+<span class="material-symbols-outlined text-[18px]">info</span>
+                            Details
+                        </button>
+<div class="h-px bg-slate-100 my-1 w-full"></div>
+<button class="flex items-center gap-3 px-4 py-2 hover:bg-red-50 hover:text-red-600 text-red-500 transition-colors w-full text-left">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+                            Delete
+                        </button>
+</div>
+</div>
+<!-- Row 4 -->
+<div class="grid grid-cols-[minmax(200px,_1fr)_120px_150px_100px_48px] gap-4 px-6 py-3 items-center border-b border-slate-100 hover:bg-slate-50/80 transition-colors duration-300 ease-in-out cursor-pointer group">
+<div class="flex items-center gap-3">
+<div class="text-blue-500 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">folder</span>
+</div>
+<span class="font-medium text-slate-900 truncate">Archived Projects 2022</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 text-[9px] font-bold ring-1 ring-slate-200">T</div>
+<span class="text-xs text-slate-500 truncate">Team</span>
+</div>
+<div class="text-xs text-slate-500">Jan 15, 2023</div>
+<div class="text-xs font-mono text-slate-500 text-right">--</div>
+<button class="opacity-0 group-hover:opacity-100 p-1.5 rounded-lg hover:bg-slate-200/50 text-slate-400 hover:text-slate-700 transition-all duration-300 ease-in-out">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

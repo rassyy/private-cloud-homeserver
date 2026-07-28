@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CloudVault - File Browser</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#3b82f6",
+                        "primary-container": "#dbeafe",
+                        "on-primary-container": "#1e3a8a",
+                        "on-primary": "#ffffff",
+                    },
+                    "fontFamily": {
+                        "sans": ["Inter", "sans-serif"],
+                        "geist": ["Geist", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-geist { font-family: 'Geist', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        [v-cloak] { display: none; }
+    </style>
+</head>
+<body class="bg-slate-50/50 text-slate-900 h-screen overflow-hidden flex flex-col antialiased selection:bg-primary/20">
+<!-- Vue App Mount Point -->
+<div class="flex h-full w-full" id="app" v-cloak="">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col bg-white w-[280px] h-screen py-6 px-4 z-40 border-r border-slate-200/50 flex-shrink-0 shadow-[1px_0_10px_rgba(0,0,0,0.02)]">
+<!-- Header -->
+<div class="flex items-center gap-3 mb-8 px-2">
+<img alt="Logo" class="w-8 h-8 rounded-xl bg-slate-50 p-1.5 shadow-sm border border-slate-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA6gH4g_Lx0816D9LpZbxyXW7ycnR_-JBcLsb1mX3zvyXGoecUaw2rfrhiXAn1rs_T1FgXLXxmw5bq6ZC3T4bD4VoWNrC8rMFJwkAd602yALOFVIIDkswAjVeEwRWJrMtJRBvqVlcqQZJ4ZMtAuyn3ovklok3fCEYLNrUcmJ3k2GhtZLThnfjfnrMmIdx6iXWsxUEVh8iY9G5fEj7IuFEoAmq-3r0cb8WKDa4zrUHzU-dGt20q-6SfkOEnKu2voxSUo7j6GcotTpRt"/>
+<div>
+<h1 class="font-geist text-lg tracking-tight font-semibold text-slate-900">CloudVault</h1>
+<p class="text-xs font-medium text-slate-500">Secure Storage</p>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full flex items-center justify-center gap-2 bg-slate-900 text-white rounded-xl py-2.5 px-4 mb-6 hover:bg-slate-800 transition-all duration-300 ease-in-out text-sm font-medium shadow-sm hover:shadow-md hover:-translate-y-0.5">
+<span class="material-symbols-outlined text-[20px]">add</span>
+            New File
+        </button>
+<!-- Navigation Tabs -->
+<nav class="flex-1 flex flex-col gap-1">
+<!-- Active Tab -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl bg-slate-100 text-slate-900 font-medium transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">folder_shared</span>
+                My Files
+            </a>
+<!-- Inactive Tabs -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">group</span>
+                Shared with me
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">history</span>
+                Recent
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">star</span>
+                Starred
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+                Trash
+            </a>
+</nav>
+<!-- Footer Tabs -->
+<div class="mt-auto flex flex-col gap-1 pt-4 border-t border-slate-200/50">
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">cloud</span>
+                Storage
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-xl text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-all duration-300 ease-in-out text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">rocket_launch</span>
+                Upgrade
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 bg-transparent relative">
+<!-- Drop Zone Overlay -->
+<div @dragleave.prevent="dragLeave" @dragover.prevent="dragOver" @drop.prevent="dropFiles" class="absolute inset-0 z-50 bg-white/40 backdrop-blur-md border-2 border-dashed border-primary/50 rounded-2xl m-6 flex flex-col items-center justify-center transition-all duration-300 ease-in-out shadow-2xl" v-show="isDragging">
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/50 flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-5xl mb-4 animate-bounce">upload_file</span>
+<h2 class="font-geist text-2xl tracking-tight text-slate-900 font-semibold">Drop files here</h2>
+<p class="text-sm text-slate-500 mt-2">Upload to Project Alpha</p>
+</div>
+</div>
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-8 h-16 sticky top-0 z-30 bg-slate-50/80 backdrop-blur-md border-b border-slate-200/50">
+<!-- Search Bar -->
+<div class="flex-1 max-w-xl relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors duration-300 pointer-events-none text-[20px]">search</span>
+<input class="w-full bg-white border border-slate-200/80 rounded-xl py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all duration-300 ease-in-out shadow-sm placeholder:text-slate-400" placeholder="Search CloudVault..." type="text"/>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-2 ml-4">
+<button class="p-2 rounded-xl text-slate-500 hover:bg-white hover:text-slate-900 hover:shadow-sm border border-transparent hover:border-slate-200/50 transition-all duration-300 ease-in-out flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="p-2 rounded-xl text-slate-500 hover:bg-white hover:text-slate-900 hover:shadow-sm border border-transparent hover:border-slate-200/50 transition-all duration-300 ease-in-out flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+<div class="h-5 w-px bg-slate-200 mx-2"></div>
+<button class="w-8 h-8 rounded-full overflow-hidden border border-slate-200 shadow-sm hover:shadow transition-all duration-300 ease-in-out hover:ring-2 hover:ring-primary/20 ring-offset-2 ring-offset-slate-50">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxa3QARzxwxLYQJ1NQA9zbYeboJ8UaX5KUxP-0n-HcGMJGn_PgrBBdVaRhlHxVp288VHaPZMmBtNwPayHNrWHKQCl5nkz4s6geoIOvMhKr5tmW8SH7LcykdtK30AbXjygX0C0kcL5uaysZ9Rd-PmVbvMGjo8MWoZ8lsPIUKVCwTvRYcbSsXYGt1Su-nAj2U-1lkuZGxkcL0zFw1BCUDxf5CYnBrtOUZBYRymXDJ4P44pThqpIAvIljEM5FOd1you5ePcldlnAUnnb8"/>
+</button>
+</div>
+</header>
+<!-- File Explorer Workspace -->
+<div @dragenter.prevent="dragEnter" class="flex-1 overflow-y-auto p-8">
+<div class="max-w-[1440px] mx-auto">
+<!-- Toolbar & Breadcrumbs -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
+<!-- Breadcrumbs -->
+<nav class="flex items-center text-sm font-medium text-slate-500">
+<a class="hover:text-slate-900 transition-all duration-300 ease-in-out px-2 py-1 rounded-md hover:bg-slate-200/50" href="#">Home</a>
+<span class="material-symbols-outlined text-[16px] mx-0.5 text-slate-300">chevron_right</span>
+<a class="hover:text-slate-900 transition-all duration-300 ease-in-out px-2 py-1 rounded-md hover:bg-slate-200/50" href="#">Work</a>
+<span class="material-symbols-outlined text-[16px] mx-0.5 text-slate-300">chevron_right</span>
+<span class="text-slate-900 px-2 py-1 font-semibold tracking-tight">Project Alpha</span>
+</nav>
+<!-- View Toggles & Actions -->
+<div class="flex items-center gap-3">
+<div class="flex bg-slate-200/50 rounded-xl p-1 border border-slate-200/50">
+<button :class="{'bg-white shadow-sm text-slate-900 rounded-lg': currentView === 'grid', 'text-slate-500 hover:text-slate-700': currentView !== 'grid'}" @click="currentView = 'grid'" class="p-1.5 transition-all duration-300 ease-in-out flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">grid_view</span>
+</button>
+<button :class="{'bg-white shadow-sm text-slate-900 rounded-lg': currentView === 'list', 'text-slate-500 hover:text-slate-700': currentView !== 'list'}" @click="currentView = 'list'" class="p-1.5 transition-all duration-300 ease-in-out flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">view_list</span>
+</button>
+</div>
+<button class="flex items-center gap-2 px-3 py-1.5 bg-white border border-slate-200/80 rounded-xl hover:bg-slate-50 hover:shadow-sm transition-all duration-300 ease-in-out text-sm font-medium text-slate-700 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                            Filter
+                        </button>
+</div>
+</div>
+<!-- Grid View -->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5" v-if="currentView === 'grid'">
+<!-- Folder Cards -->
+<div :key="folder.id" class="group bg-white border border-slate-200/50 rounded-2xl p-5 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-slate-300/50 transition-all duration-300 ease-in-out cursor-pointer flex flex-col gap-4 relative" v-for="folder in folders">
+<div class="flex justify-between items-start">
+<div class="p-2.5 bg-blue-50 text-blue-500 rounded-xl">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">folder</span>
+</div>
+<button class="opacity-0 group-hover:opacity-100 p-1.5 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition-all duration-300 ease-in-out">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</button>
+</div>
+<div>
+<h3 class="font-geist text-sm tracking-tight font-semibold text-slate-900 truncate">{{ folder.name }}</h3>
+<p class="text-xs text-slate-500 mt-1 font-medium">{{ folder.items }} items</p>
+</div>
+</div>
+<!-- File Cards -->
+<div :key="file.id" class="group bg-white border border-slate-200/50 rounded-2xl p-2 pb-4 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-slate-300/50 transition-all duration-300 ease-in-out cursor-pointer flex flex-col gap-3 relative overflow-hidden" v-for="file in files">
+<!-- Thumbnail -->
+<div class="h-32 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center overflow-hidden relative">
+<img alt="Thumbnail" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAC1orB1HkYQWvj2w5vFAvRJuPubYfqx_PSIhHMp2JARRl8sNPiF9DuGyStJcrW9hsOpNVgWxGUcfKR1X-oDgXyQ9nSmB2AXtATfSXz_HsiBGiFAADn5Ey_yr0v-0O5RuJhclhHT6eIj0vnVTmaU1CavLrIU8yhznYuwK00brbvVke_-ah_ZuvmInmVvxd9cAzv479OVKJ591z6Wb4uvZhJXtlmvAz4SYF-g-2yjgtdH8JaNz9iYZU30-MYlSxzLP3UjL82uEKLp1kx" v-if="file.type === 'image'"/>
+<div class="text-slate-300" v-else="">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">{{ file.icon === 'design_services' ? 'draw' : file.icon }}</span>
+</div>
+<!-- File Action Menu Overlay -->
+<div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out z-10">
+<button class="p-1.5 rounded-lg bg-white/90 backdrop-blur-sm shadow-sm hover:bg-white text-slate-600 transition-all duration-300 ease-in-out">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+</div>
+<div class="px-3">
+<h3 class="font-geist text-sm tracking-tight font-semibold text-slate-900 truncate">{{ file.name }}</h3>
+<div class="flex justify-between items-center mt-1.5">
+<p class="text-xs text-slate-500 font-medium">{{ file.size }}</p>
+<span class="w-1.5 h-1.5 rounded-full bg-blue-500 ring-2 ring-blue-50" title="Shared" v-if="file.shared"></span>
+</div>
+</div>
+</div>
+</div>
+<!-- List View -->
+<div class="bg-white border border-slate-200/50 rounded-2xl overflow-hidden shadow-sm" v-else-if="currentView === 'list'">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50/50 border-b border-slate-200/50 text-xs font-medium text-slate-500 uppercase tracking-wider">
+<th class="py-3 px-6 font-medium w-1/2">Name</th>
+<th class="py-3 px-6 font-medium hidden sm:table-cell">Owner</th>
+<th class="py-3 px-6 font-medium hidden md:table-cell">Modified</th>
+<th class="py-3 px-6 font-medium">Size</th>
+<th class="py-3 px-6 font-medium w-16"></th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-slate-100">
+<!-- Folders List -->
+<tr :key="'list-'+folder.id" class="hover:bg-slate-50/80 transition-colors duration-300 ease-in-out group cursor-pointer" v-for="folder in folders">
+<td class="py-3 px-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-500 text-[20px]" style="font-variation-settings: 'FILL' 1;">folder</span>
+<span class="font-medium text-slate-900">{{ folder.name }}</span>
+</div>
+</td>
+<td class="py-3 px-6 text-slate-500 hidden sm:table-cell">me</td>
+<td class="py-3 px-6 text-slate-500 hidden md:table-cell">{{ folder.date }}</td>
+<td class="py-3 px-6 text-slate-500 font-mono text-xs">—</td>
+<td class="py-3 px-6 text-right">
+<button class="opacity-0 group-hover:opacity-100 p-1.5 rounded-lg hover:bg-slate-200/50 text-slate-400 hover:text-slate-700 transition-all duration-300 ease-in-out">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</td>
+</tr>
+<!-- Files List -->
+<tr :key="'list-'+file.id" class="hover:bg-slate-50/80 transition-colors duration-300 ease-in-out group cursor-pointer" v-for="file in files">
+<td class="py-3 px-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 text-[20px]" style="font-variation-settings: 'FILL' 1;">{{ file.icon === 'design_services' ? 'draw' : file.icon }}</span>
+<span class="font-medium text-slate-900">{{ file.name }}</span>
+</div>
+</td>
+<td class="py-3 px-6 text-slate-500 hidden sm:table-cell">
+<div class="flex items-center gap-2">
+<img alt="" class="w-5 h-5 rounded-full object-cover ring-1 ring-slate-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNyo6_IftHIZrOS140KcrkRI_uE_xZaF1L585Kh21oXV94v2di5zJzlkNuE0GLiqsVgloLB2ndoIyu8Cd8eH7FEw-XU7DC9Ju8ypdn5LAbE6VFC4bjvq4QSjbgRTjtaTfunnedfB1qle2tjwQ8n_0UcA0yHgBehlYFaLjzFAoUMpccK-ODaPNAs4m66AJOnbVz-qZF8c2ovs4cjX1i5IPcNxa27Tmm17rx62lyqIBiec2nxfG-fEgDCB5IwJ8uDtY3ln0MKgCVVtZ_" v-if="file.ownerAvatar"/>
+<span class="w-5 h-5 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-[9px] font-bold ring-1 ring-slate-200" v-else="">ME</span>
+<span class="text-xs">{{ file.owner }}</span>
+</div>
+</td>
+<td class="py-3 px-6 text-slate-500 text-xs hidden md:table-cell">{{ file.date }}</td>
+<td class="py-3 px-6 text-slate-500 font-mono text-xs">{{ file.size }}</td>
+<td class="py-3 px-6 text-right">
+<div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+<button class="p-1.5 rounded-lg hover:bg-slate-200/50 text-slate-400 hover:text-slate-700 transition-all duration-300 ease-in-out">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Vue App Script -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    const { createApp, ref, onMounted } = Vue;
+
+    createApp({
+        setup() {
+            const currentView = ref('grid');
+            const isDragging = ref(false);
+            let dragCounter = 0;
+
+            const folders = ref([
+                { id: 1, name: 'Q3 Financials', items: 12, date: 'Oct 24, 2023' },
+                { id: 2, name: 'Brand Assets v2', items: 45, date: 'Nov 02, 2023' },
+                { id: 3, name: 'Client Presentations', items: 8, date: 'Nov 15, 2023' }
+            ]);
+
+            const files = ref([
+                { id: 101, name: 'Dashboard_UI_Final.fig', type: 'design', icon: 'design_services', size: '24.5 MB', shared: true, owner: 'Sarah J.', ownerAvatar: true, date: 'Yesterday' },
+                { id: 102, name: 'Q4_Projections.xlsx', type: 'spreadsheet', icon: 'table_chart', size: '1.2 MB', shared: false, owner: 'me', ownerAvatar: false, date: 'Today, 10:42 AM' },
+                { id: 103, name: 'Meeting_Notes_Nov.docx', type: 'document', icon: 'description', size: '45 KB', shared: true, owner: 'Alex M.', ownerAvatar: true, date: 'Nov 18, 2023' },
+                { id: 104, name: 'Team_Offsite.jpg', type: 'image', icon: 'image', size: '4.8 MB', shared: false, owner: 'me', ownerAvatar: false, date: 'Nov 10, 2023' },
+                { id: 105, name: 'API_Documentation.pdf', type: 'document', icon: 'picture_as_pdf', size: '3.1 MB', shared: false, owner: 'me', ownerAvatar: false, date: 'Oct 05, 2023' }
+            ]);
+
+            const dragEnter = (e) => { dragCounter++; isDragging.value = true; };
+            const dragLeave = (e) => { dragCounter--; if (dragCounter === 0) isDragging.value = false; };
+            const dragOver = (e) => {};
+            const dropFiles = (e) => {
+                dragCounter = 0; isDragging.value = false;
+                const dt = e.dataTransfer;
+                if (dt && dt.files && dt.files.length > 0) alert(`Simulating upload of ${dt.files.length} file(s)`);
+            };
+
+            return { currentView, folders, files, isDragging, dragEnter, dragLeave, dragOver, dropFiles };
+        }
+    }).mount('#app');
+</script>
+</body></html>
