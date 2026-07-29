@@ -83,6 +83,9 @@ const isAllDone = computed(() => props.uploads.length > 0 && completedCount.valu
                     <div class="flex-1 min-w-0">
                         <p class="text-xs font-medium text-slate-900 truncate">{{ upload.name }}</p>
                         <p v-if="upload.status === 'error'" class="text-[10px] text-red-500">Upload failed</p>
+                        <div v-else-if="upload.status === 'uploading'" class="w-full bg-slate-200 rounded-full h-1 mt-1">
+                            <div class="bg-primary h-1 rounded-full transition-all duration-300" :style="{ width: (upload.progress || 0) + '%' }"></div>
+                        </div>
                     </div>
 
                     <div class="flex items-center gap-2">

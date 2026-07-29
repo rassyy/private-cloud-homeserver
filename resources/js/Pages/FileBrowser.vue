@@ -184,9 +184,11 @@ function handleFileSelect(event) {
     if (files.length > 0) {
         showUploadProgress.value = true;
         doUpload(files, props.folder?.id, () => {
-            setTimeout(() => {
-                if (!isUploading.value) showUploadProgress.value = false;
-            }, 3000);
+            if (!uploads.value.some(u => u.status === 'error')) {
+                setTimeout(() => {
+                    if (!isUploading.value) showUploadProgress.value = false;
+                }, 3000);
+            }
         });
     }
     event.target.value = '';
@@ -196,9 +198,11 @@ function handleDrop(files) {
     if (files.length > 0) {
         showUploadProgress.value = true;
         doUpload(files, props.folder?.id, () => {
-            setTimeout(() => {
-                if (!isUploading.value) showUploadProgress.value = false;
-            }, 3000);
+            if (!uploads.value.some(u => u.status === 'error')) {
+                setTimeout(() => {
+                    if (!isUploading.value) showUploadProgress.value = false;
+                }, 3000);
+            }
         });
     }
 }

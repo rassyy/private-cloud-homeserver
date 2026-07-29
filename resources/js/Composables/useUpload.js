@@ -27,8 +27,9 @@ export function useUpload() {
 
         uploads.value.push(...newUploads);
 
-        // Upload files in parallel
-        await Promise.all(newUploads.map(item => uploadSingleFile(item, folderId)));
+        // Upload files in parallel using the reactive proxies from uploads.value
+        const reactiveNewUploads = uploads.value.slice(-newUploads.length);
+        await Promise.all(reactiveNewUploads.map(item => uploadSingleFile(item, folderId)));
 
         // Once all finished, reload current view props to show newly uploaded files and storage usage
         if (!uploads.value.some(u => u.status === 'uploading')) {
@@ -69,9 +70,7 @@ export function useUpload() {
                     cancelToken: item.cancelSource.token,
                     onUploadProgress: (progressEvent) => {
                         if (progressEvent.total) {
-                            const chunkProgress = progressEvent.loaded / progressEvent.total;
-                            const overallProgress = ((chunkNumber - 1 + chunkProgress) / totalChunks) * 100;
-                            item.progress = Math.round(overallProgress);
+                            item.progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
                         }
                     },
                 });
